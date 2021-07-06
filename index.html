@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Tracer | Find Your Location</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Style -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body ng-controller="myCtrl" ng-cloak>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><b>IP Tracer</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+
+    <form class="row g-3 d-flex justify-content-center">
+        <div class="col-auto">
+            <input type="text" class="form-control" id="inputIp" placeholder="192.168.xxx.xxx">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+        </div>
+    </form>
+
+    <div class="d-flex justify-content-center">
+        <div class="table-responsive col-10" ng-if="ipRes">
+            <table class="table table-bordered table-striped">
+                <tbody>
+                    <tr>
+                        <td><b>IP Address</b></td>
+                        <td>{{ ipRes.ip }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>City</b></td>
+                        <td>{{ ipRes.city }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Region</b></td>
+                        <td>{{ ipRes.region }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Country</b></td>
+                        <td>{{ ipRes.country }} ({{ ipRes.country_name }})</td>
+                    </tr>
+                    <tr>
+                        <td><b>European Union</b></td>
+                        <td>{{ ipRes.in_eu }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Time Zone</b></td>
+                        <td>{{ ipRes.timezone }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Calling Code</b></td>
+                        <td>{{ ipRes.country_calling_code }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Currency</b></td>
+                        <td>{{ ipRes.currency }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Languages</b></td>
+                        <td>{{ ipRes.languages }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>ASN</b></td>
+                        <td>{{ ipRes.asn }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Org</b></td>
+                        <td>{{ ipRes.org }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+<!-- AngularJS -->
+<script src="assets/angular-1.8.2/angular.min.js"></script>
+<!-- Directives -->
+<script src="app/js/directives/mainDirective.js"></script>
+<!-- Controllers -->
+<script src="app/js/controllers/mainController.js"></script>
+
+</html>
