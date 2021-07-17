@@ -2,114 +2,199 @@
 <html lang="en" ng-app="myApp">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IP Tracer | Find Your Location</title>
+    <title>IP Tracer | Find your location</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/logo.svg">
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <!-- Style -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- CSS Include -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Environment -->
+    <script src="env.js"></script>
+
+    <!-- Javascript Include -->
+    <script src="assets/angular-1.8.2/angular.min.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/angular-ui-router/release/stateEvents.js"></script>
+    <script src="app/js/sendMail.js"></script>
+
+    <!-- Directives -->
+    <script src="app/js/directives/mainDirective.js"></script>
+
+    <!-- Controllers -->
+    <script src="app/js/controllers/mainController.js"></script>
+    <script src="app/js/controllers/exampleController.js"></script>
 </head>
 
-<body ng-controller="myCtrl" ng-cloak>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#"><b>IP Tracer</b></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+    <!-- Start Navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#myPage">IP Tracer</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#services">SERVICES</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    <!-- End Navbar -->
 
-    <br>
+    <div class="jumbotron text-center">
+        <h1><img src="assets/img/logo.svg" width="70px" alt="IP Tracer Logo"> Tracer</h1>
+        <p>IP Tracer is a tool to track detailed information and location in TCP/IP Address.</p>
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control" size="50" placeholder="IP Public" required>
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-custom">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
-    <form class="row g-3 d-flex justify-content-center">
-        <div class="col-auto">
-            <input type="text" class="form-control" id="inputIp" placeholder="192.168.xxx.xxx">
-        </div>
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3">Submit</button>
-        </div>
-    </form>
-
-    <div class="d-flex justify-content-center">
-        <div class="table-responsive col-10" ng-if="ipRes">
-            <table class="table table-bordered table-striped">
-                <tbody>
-                    <tr>
-                        <td><b>IP Address</b></td>
-                        <td>{{ ipRes.ip }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>City</b></td>
-                        <td>{{ ipRes.city }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Region</b></td>
-                        <td>{{ ipRes.region }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Country</b></td>
-                        <td>{{ ipRes.country }} ({{ ipRes.country_name }})</td>
-                    </tr>
-                    <tr>
-                        <td><b>European Union</b></td>
-                        <td>{{ ipRes.in_eu }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Time Zone</b></td>
-                        <td>{{ ipRes.timezone }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Calling Code</b></td>
-                        <td>{{ ipRes.country_calling_code }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Currency</b></td>
-                        <td>{{ ipRes.currency }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Languages</b></td>
-                        <td>{{ ipRes.languages }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>ASN</b></td>
-                        <td>{{ ipRes.asn }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Org</b></td>
-                        <td>{{ ipRes.org }}</td>
-                    </tr>
-                </tbody>
-            </table>
+    <!-- Container (About Section) -->
+    <div id="about" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>About TCP/IP</h2>
+                <br>
+                <h4>
+                    The Internet protocol suite is the conceptual model and set of communications protocols used in the
+                    Internet and similar computer networks. It is commonly known as TCP/IP because the current
+                    foundational protocols in the suite are the Transmission Control Protocol (TCP) and the Internet
+                    Protocol (IP). During its development, versions of it were known as the Department of Defense (DoD)
+                    model because the development of the networking method was funded by the United States Department of
+                    Defense through DARPA. Its implementation is a protocol stack.
+                </h4>
+                <br>
+                <p>
+                    The Internet protocol suite provides end-to-end data communication specifying how data should be
+                    packetized, addressed, transmitted, routed, and received. This functionality is organized into four
+                    abstraction layers, which classify all related protocols according to the scope of networking
+                    involved. From lowest to highest, the layers are the link layer, containing communication
+                    methods for data that remains within a single network segment; the internet layer, providing
+                    internetworking between independent networks; the transport layer, handling host-to-host
+                    communication; and the application layer, providing process-to-process data exchange for
+                    applications.
+                </p>
+                <br>
+                <!-- <button class="btn btn-default btn-lg">More</button> -->
+                <a href="https://en.wikipedia.org/wiki/Internet_protocol_suite" target="_blank"
+                    class="btn btn-default btn-lg">More</a>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-signal logo"></span>
+            </div>
         </div>
     </div>
-</body>
 
-<!-- AngularJS -->
-<script src="assets/angular-1.8.2/angular.min.js"></script>
-<!-- Directives -->
-<script src="app/js/directives/mainDirective.js"></script>
-<!-- Controllers -->
-<script src="app/js/controllers/mainController.js"></script>
+    <div class="container-fluid bg-grey">
+        <div class="row">
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-globe logo slideanim"></span>
+            </div>
+            <div class="col-sm-8">
+                <h2>Our Values</h2><br>
+                <h4>
+                    <strong>MISSION:</strong> Our mission lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </h4>
+                <br>
+                <p>
+                    <strong>VISION:</strong> Our vision Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container (Services Section) -->
+    <div id="services" class="container-fluid text-center">
+        <h2>SERVICES</h2>
+        <h4>What we offer</h4>
+        <br>
+        <div class="row slideanim">
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-search logo-small"></span>
+                <h4>CHECK</h4>
+                <p>Lorem ipsum dolor sit amet..</p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-eye-open logo-small"></span>
+                <h4>LOOKUP</h4>
+                <p>Lorem ipsum dolor sit amet..</p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-globe logo-small"></span>
+                <h4>LOCATION</h4>
+                <p>Lorem ipsum dolor sit amet..</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container (Contact Section) -->
+    <div id="contact" class="container-fluid bg-grey">
+        <h2 class="text-center">CONTACT</h2>
+        <div class="row">
+            <div class="col-sm-5">
+                <p>Contact us and we'll get back to you within 24 hours.</p>
+                <p><span class="glyphicon glyphicon-map-marker"></span> Bandung, Indonesia.</p>
+                <p><span class="glyphicon glyphicon-envelope"></span> chachanurholis29@gmail.com</p>
+            </div>
+            <div class="col-sm-7 slideanim">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                    </div>
+                </div>
+                <textarea class="form-control" id="comments" name="comments" placeholder="Comment"
+                    rows="5"></textarea><br>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <button class="btn btn-custom pull-right" onclick="sendMail()" type="submit">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Footer -->
+    <footer class="container-fluid text-center">
+        <a href="#myPage" title="To Top"><span class="glyphicon glyphicon-chevron-up"></span></a>
+        <p>Website by <a target="_blank" href="https://chanurholis.github.io" title="Visit Chacha Nurholis">Chacha Nurholis</a></p>
+        <p>Design by <a target="_blank" href="https://www.w3schools.com" title="Visit w3schools">w3schools</a></p>
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Smooth Scrolling -->
+    <script src="assets/js/smoothScrolling.js"></script>
+
+</body>
 
 </html>
